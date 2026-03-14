@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DJM Mecánica Eco - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos y profesionales.">
+<meta name="description" content="Mecanica Dubois - Diagnóstico Automotriz Computarizado y Mecánica Integral. Turnos online rápidos y profesionales.">
 <meta name="theme-color" content="#0A0F1A">
-<title>DJM Mecánica Eco | Diagnóstico Automotriz Profesional</title>
+<title>MECANICA DUBOIS | Diagnóstico Automotriz Profesional</title>
 <!-- Preconnect para mejor rendimiento-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -380,6 +380,55 @@ filter: drop-shadow(0 0 10px rgba(227, 30, 36, 0.5));
 height: 45px;
 }
 }
+/* Language Switcher Styles */
+.lang-switcher{
+position: relative;
+display: inline-block;
+}
+.lang-dropdown{
+display: none;
+position: absolute;
+right: 0;
+top: 100%;
+background: rgba(30, 42, 58, 0.95);
+border: 1px solid rgba(227, 30, 36, 0.3);
+border-radius: 12px;
+margin-top: 8px;
+min-width: 120px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+z-index: 100;
+}
+.lang-dropdown.active{
+display: block;
+}
+.lang-option{
+display: block;
+padding: 10px 16px;
+color: #E2E8F0;
+text-decoration: none;
+transition: all 0.3s ease;
+cursor: pointer;
+font-weight: 600;
+}
+.lang-option:hover{
+background: rgba(227, 30, 36, 0.2);
+color: #E31E24;
+}
+.lang-btn{
+background: rgba(227, 30, 36, 0.15);
+border: 1px solid rgba(227, 30, 36, 0.3);
+color: #E31E24;
+padding: 6px 14px;
+border-radius: 8px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+font-size: 0.85rem;
+}
+.lang-btn:hover{
+background: rgba(227, 30, 36, 0.3);
+transform: translateY(-2px);
+}
 </style>
 </head>
 <body class="antialiased relative">
@@ -390,11 +439,11 @@ height: 45px;
 <div class="container mx-auto px-4 h-16 md:h-20 flex items-center relative">
 <!-- LOGO - Izquierda superior (MÁS GRANDE) -->
 <a href="#" class="flex items-center md:absolute md:left-4 md:translate-x-0">
-<img src="djm logo.png" alt="DJM Mecánica Eco Logo" class="navbar-logo">
+<img src="MECANICA DUBOIS.png" alt="Mecanica Dubois Logo" class="navbar-logo">
 </a>
 <!-- Título centrado -->
 <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 md:ml-auto md:mr-auto font-display font-bold text-lg sm:text-xl md:text-2xl gradient-text tracking-tight uppercase text-center md:text-left drop-shadow-lg">
-DJM Mecánica Eco
+MECANICA DUBOIS
 </a>
 <div class="ml-auto flex items-center gap-3 md:gap-5">
 <div id="status-badge-desktop" class="hidden md:flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 hover:border-primary-red/40 transition-all">
@@ -402,11 +451,21 @@ DJM Mecánica Eco
 <span id="status-text-desktop" class="text-gray-300">Verificando...</span>
 </div>
 <div class="hidden md:flex items-center gap-3 lg:gap-5">
-<a href="#asesoramiento" class="text-gray-300 hover:text-primary-red transition text-sm lg:text-base font-medium relative group">
+<!-- Language Switcher -->
+<div class="lang-switcher">
+<button class="lang-btn" onclick="toggleLang()">
+<i class="fa-solid fa-globe mr-1"></i> <span id="current-lang">ES</span>
+</button>
+<div class="lang-dropdown" id="lang-dropdown">
+<a class="lang-option" onclick="changeLanguage('es')">Español</a>
+<a class="lang-option" onclick="changeLanguage('en')">English</a>
+</div>
+</div>
+<a href="#asesoramiento" class="text-gray-300 hover:text-primary-red transition text-sm lg:text-base font-medium relative group" data-es="Asesoramiento" data-en="Consulting">
 Asesoramiento
 <span class="absolute bottom-1 left-0 w-0 h-0.5 bg-primary-red transition-all group-hover:w-full"></span>
 </a>
-<a href="#diagnostico" class="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-bold transition shadow-neon uppercase text-xs lg:text-sm tracking-wide">
+<a href="#diagnostico" class="btn-primary px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl font-bold transition shadow-neon uppercase text-xs lg:text-sm tracking-wide" data-es="Pre-Diagnóstico" data-en="Pre-Diagnosis">
 Pre-Diagnóstico
 </a>
 </div>
@@ -418,16 +477,16 @@ Pre-Diagnóstico
 <div class="fixed bottom-24 md:bottom-8 right-4 z-50 animate-float flex flex-col gap-3">
 <a href="#diagnostico" class="btn-primary px-5 py-3 md:px-7 md:py-3.5 rounded-2xl shadow-neon transition flex items-center gap-2.5 hover:shadow-glow text-sm font-semibold group">
 <i class="fa-solid fa-calendar-check text-lg"></i>
-<span class="hidden xs:inline">Pedir Turno</span>
+<span class="hidden xs:inline" data-es="Pedir Turno" data-en="Book Appointment">Pedir Turno</span>
 <i class="fa-solid fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
 </a>
 <!-- Botón flotante de reseñas-->
-<a href="https://maps.app.goo.gl/4QHTd33Bm94pRUNJ8" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
+<a href="https://maps.app.goo.gl/KLGmKhbTtMhampvt6" target="_blank" rel="noopener noreferrer" class="btn-review px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 0.5s;">
 <i class="fa-solid fa-star text-lg"></i>
-<span class="hidden xs:inline">Deja tu Reseña</span>
+<span class="hidden xs:inline" data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 <!-- Botón flotante de Instagram-->
-<a href="https://www.instagram.com/djm_mecanica_ero/" target="_blank" rel="noopener noreferrer" class="btn-outline px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 1s;">
+<a href="https://www.instagram.com/mecanicadubois/" target="_blank" rel="noopener noreferrer" class="btn-outline px-4 py-2.5 md:px-5 md:py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-xs md:text-sm font-semibold group animate-float" style="animation-delay: 1s;">
 <i class="fa-brands fa-instagram text-lg"></i>
 <span class="hidden xs:inline">Instagram</span>
 </a>
@@ -446,38 +505,37 @@ Pre-Diagnóstico
 <div class="space-y-6 md:space-y-8 max-w-2xl">
 <div class="fade-in-up" style="animation-delay: 0.1s;">
 <div class="inline-flex items-center gap-2 bg-primary-red/15 border border-primary-red/30 text-primary-red px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-<i class="fa-solid fa-microchip"></i> Diagnóstico de Precisión
+<i class="fa-solid fa-microchip"></i> <span data-es="Diagnóstico de Precisión" data-en="Precision Diagnosis">Diagnóstico de Precisión</span>
 </div>
 </div>
 <h1 class="font-display font-black text-4xl md:text-5xl lg:text-7xl leading-tight glow-text main-title fade-in-up" style="animation-delay: 0.2s;">
-DIAGNÓSTICO Y<br>
-<span class="gradient-text">MANTENIMIENTO INTEGRAL</span>
+<span data-es="DIAGNÓSTICO Y<br>MANTENIMIENTO INTEGRAL" data-en="DIAGNOSIS AND<br>INTEGRAL MAINTENANCE">DIAGNÓSTICO Y<br><span class="gradient-text">MANTENIMIENTO INTEGRAL</span></span>
 </h1>
-<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
+<p class="text-gray-300/90 text-base md:text-lg max-w-xl description-text fade-in-up leading-relaxed" style="animation-delay: 0.3s;" data-es="Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller." data-en="Your vehicle speaks. We listen with cutting-edge technology. Pre-load symptoms and receive an accurate diagnosis before visiting our workshop.">
 Tu vehículo habla. Nosotros escuchamos con tecnología de punta. Pre-carga síntomas y recibe un diagnóstico preciso antes de visitar nuestro taller.
 </p>
 <!-- Stats animados-->
 <div class="grid grid-cols-3 gap-3 md:gap-5 pt-2 md:pt-4 fade-in-up" style="animation-delay: 0.5s;">
 <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-red/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter1" data-target="99">0</span>%</span>
-<span class="text-xs text-gray-400 mt-1 block">Precisión</span>
+<span class="text-xs text-gray-400 mt-1 block" data-es="Precisión" data-en="Accuracy">Precisión</span>
 </div>
 <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-red/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter2" data-target="50">0</span>min</span>
-<span class="text-xs text-gray-400 mt-1 block">Ahorro</span>
+<span class="text-xs text-gray-400 mt-1 block" data-es="Ahorro" data-en="Savings">Ahorro</span>
 </div>
 <div class="text-center p-3 rounded-xl bg-white/5 border border-white/10 hover:border-primary-red/30 transition">
 <span class="block text-2xl md:text-3xl font-bold gradient-text"><span id="counter3" data-target="8000">0</span>+</span>
-<span class="text-xs text-gray-400 mt-1 block">Vehículos</span>
+<span class="text-xs text-gray-400 mt-1 block" data-es="Vehículos" data-en="Vehicles">Vehículos</span>
 </div>
 </div>
 <!-- CTAs-->
 <div class="flex flex-col sm:flex-row gap-3.5 pt-2 fade-in-up" style="animation-delay: 0.6s;">
 <a href="#diagnostico" class="btn-primary px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2.5 group text-sm font-semibold shadow-neon">
-Iniciar Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+<span data-es="Iniciar Diagnóstico" data-en="Start Diagnosis">Iniciar Diagnóstico</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
 </a>
 <a href="#asesoramiento" class="btn-outline px-6 py-3.5 rounded-xl uppercase tracking-wide flex items-center justify-center gap-2 text-sm font-semibold">
-<i class="fa-solid fa-book-open text-primary-red"></i> Guías Técnicas
+<i class="fa-solid fa-book-open text-primary-red"></i> <span data-es="Guías Técnicas" data-en="Technical Guides">Guías Técnicas</span>
 </a>
 </div>
 </div>
@@ -489,7 +547,7 @@ Iniciar Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-1
 <!-- Badge flotante -->
 <div class="absolute top-4 right-4 glass-card px-4 py-2.5 rounded-xl flex items-center gap-2 animate-float">
 <i class="fa-solid fa-shield-check text-primary-red"></i>
-<span class="text-sm font-semibold">Certificado</span>
+<span class="text-sm font-semibold" data-es="Certificado" data-en="Certified">Certificado</span>
 </div>
 </div>
 </div>
@@ -501,10 +559,10 @@ Iniciar Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-1
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20 max-w-3xl mx-auto">
 <div class="inline-block bg-primary-red/15 border border-primary-red/30 text-primary-red px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-<i class="fa-solid fa-lightbulb mr-1.5"></i> Conocimiento Técnico
+<i class="fa-solid fa-lightbulb mr-1.5"></i> <span data-es="Conocimiento Técnico" data-en="Technical Knowledge">Conocimiento Técnico</span>
 </div>
-<h2 class="font-display font-bold text-4xl md:text-5xl gradient-text uppercase mb-5 glow-text tracking-tight">Centro de Asesoramiento</h2>
-<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+<h2 class="font-display font-bold text-4xl md:text-5xl gradient-text uppercase mb-5 glow-text tracking-tight" data-es="Centro de Asesoramiento" data-en="Consulting Center">Centro de Asesoramiento</h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" data-es="Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo." data-en="Detect failures at early stages and avoid expensive repairs. Learn to identify the key signals of your vehicle.">
 Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a identificar las señales clave de tu vehículo.
 </p>
 </div>
@@ -515,14 +573,14 @@ Detecta fallas en etapas tempranas y evita reparaciones costosas. Aprende a iden
 <img src="https://placehold.co/600x400/E31E24/0A0F1A?text=FRENOS" alt="Sistema de frenos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4">
-<span class="text-xs font-bold text-primary-red uppercase tracking-wider">Predictivo</span>
+<span class="text-xs font-bold text-primary-red uppercase tracking-wider" data-es="Predictivo" data-en="Predictive">Predictivo</span>
 </div>
 </div>
 <div class="p-5 md:p-6">
-<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Señales en Frenos</h3>
-<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Señales en Frenos" data-en="Brake Signals">Señales en Frenos</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito." data-en="Squeaks, pedal vibration or excessive travel: indicators of pad wear or air in the circuit.">Chillidos, vibración en pedal o recorrido excesivo: indicadores de desgaste en pastillas o aire en el circuito.</p>
 <a href="#diagnostico" class="text-primary-red hover:text-red-300 font-semibold text-sm flex items-center gap-1.5 group">
-Analizar ahora
+<span data-es="Analizar ahora" data-en="Analyze now">Analizar ahora</span>
 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
 </a>
 </div>
@@ -533,14 +591,14 @@ Analizar ahora
 <img src="https://placehold.co/600x400/1E2A3A/E31E24?text=BATERIA" alt="Sistema eléctrico" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4">
-<span class="text-xs font-bold text-primary-red uppercase tracking-wider">Preventivo</span>
+<span class="text-xs font-bold text-primary-red uppercase tracking-wider" data-es="Preventivo" data-en="Preventive">Preventivo</span>
 </div>
 </div>
 <div class="p-5 md:p-6">
-<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Batería y Alternador</h3>
-<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total.</p>
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Batería y Alternador" data-en="Battery and Alternator">Batería y Alternador</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total." data-en="Slow start, dim or flickering lights: check voltage and charge status before total failure.">Arranque lento, luces tenues o parpadeantes: verifica voltaje y estado de carga antes de una falla total.</p>
 <a href="#diagnostico" class="text-primary-red hover:text-red-300 font-semibold text-sm flex items-center gap-1.5 group">
-Verificar sistema
+<span data-es="Verificar sistema" data-en="Check system">Verificar sistema</span>
 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
 </a>
 </div>
@@ -551,14 +609,14 @@ Verificar sistema
 <img src="https://placehold.co/600x400/C8102E/0A0F1A?text=FLUIDOS" alt="Fluidos críticos" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 to-transparent"></div>
 <div class="absolute bottom-3 left-4">
-<span class="text-xs font-bold text-primary-red uppercase tracking-wider">Mantenimiento</span>
+<span class="text-xs font-bold text-primary-red uppercase tracking-wider" data-es="Mantenimiento" data-en="Maintenance">Mantenimiento</span>
 </div>
 </div>
 <div class="p-5 md:p-6">
-<h3 class="font-bold text-lg md:text-xl text-white mb-2.5">Fluidos Críticos</h3>
-<p class="text-gray-400/90 text-sm mb-4 leading-relaxed">Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión.</p>
+<h3 class="font-bold text-lg md:text-xl text-white mb-2.5" data-es="Fluidos Críticos" data-en="Critical Fluids">Fluidos Críticos</h3>
+<p class="text-gray-400/90 text-sm mb-4 leading-relaxed" data-es="Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión." data-en="Oil, coolant and brake fluid: low levels or color changes indicate urgency of review.">Aceite, refrigerante y líquido de frenos: niveles bajos o cambios de color indican urgencia de revisión.</p>
 <a href="#diagnostico" class="text-primary-red hover:text-red-300 font-semibold text-sm flex items-center gap-1.5 group">
-Revisar niveles
+<span data-es="Revisar niveles" data-en="Check levels">Revisar niveles</span>
 <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
 </a>
 </div>
@@ -566,7 +624,7 @@ Revisar niveles
 </div>
 <div class="text-center mt-10 md:mt-14">
 <a href="#diagnostico" class="inline-flex items-center gap-2.5 bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary-red/40 text-white font-bold py-3.5 px-7 md:px-9 rounded-2xl transition-all uppercase tracking-wide text-sm shadow-soft hover:shadow-neon">
-<i class="fa-solid fa-hand-pointer text-primary-red"></i> Iniciar Pre-Diagnóstico Ahora
+<i class="fa-solid fa-hand-pointer text-primary-red"></i> <span data-es="Iniciar Pre-Diagnóstico Ahora" data-en="Start Pre-Diagnosis Now">Iniciar Pre-Diagnóstico Ahora</span>
 </a>
 </div>
 </div>
@@ -577,10 +635,10 @@ Revisar niveles
 <div class="container mx-auto px-4 relative z-10">
 <div class="text-center mb-14 md:mb-20">
 <div class="inline-block bg-primary-red/15 border border-primary-red/30 text-primary-red px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-<i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> Soluciones Profesionales
+<i class="fa-solid fa-screwdriver-wrench mr-1.5"></i> <span data-es="Soluciones Profesionales" data-en="Professional Solutions">Soluciones Profesionales</span>
 </div>
-<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase mb-4 glow-text tracking-tight">Servicios<span class="gradient-text">Integrales</span></h2>
-<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase mb-4 glow-text tracking-tight"><span data-es="Servicios" data-en="Services">Servicios</span><span class="gradient-text" data-es="Integrales" data-en="Integral">Integrales</span></h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto text-base md:text-lg leading-relaxed" data-es="Tecnología avanzada y expertise técnico para mantener tu vehículo en condiciones óptimas de seguridad y rendimiento." data-en="Advanced technology and technical expertise to keep your vehicle in optimal safety and performance conditions.">
 Tecnología avanzada y expertise técnico para mantener tu vehículo en condiciones óptimas de seguridad y rendimiento.
 </p>
 </div>
@@ -590,48 +648,48 @@ Tecnología avanzada y expertise técnico para mantener tu vehículo en condicio
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-laptop-code text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Diagnóstico Computarizado</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Diagnóstico Computarizado" data-en="Computerized Diagnosis">Diagnóstico Computarizado</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación." data-en="Advanced scanning of ECU, sensors and electronic systems with state-of-the-art equipment.">Escaneo avanzado de ECU, sensores y sistemas electrónicos con equipos de última generación.</p>
 </div>
 <!-- Servicio 2-->
 <div class="glass-card p-6 md:p-7 hover-lift group">
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-oil-can text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Mecánica Ligera</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Mecánica Ligera" data-en="Light Mechanics">Mecánica Ligera</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada." data-en="Oil changes, filters, spark plugs and scheduled services with certified quality spare parts.">Cambios de aceite, filtros, bujías y services programados con repuestos de calidad certificada.</p>
 </div>
 <!-- Servicio 3-->
 <div class="glass-card p-6 md:p-7 hover-lift group">
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-circle-stop text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Sistema de Frenos</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Sistema de Frenos" data-en="Brake System">Sistema de Frenos</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad." data-en="Comprehensive review of ABS, pads, discs and brake fluid for maximum safety.">Revisión integral de ABS, pastillas, discos y líquido de frenos para máxima seguridad.</p>
 </div>
 <!-- Servicio 4-->
 <div class="glass-card p-6 md:p-7 hover-lift group">
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-car-burst text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Suspensión y Dirección</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Suspensión y Dirección" data-en="Suspension and Steering">Suspensión y Dirección</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta." data-en="Shock absorbers, ball joints, alignment and balancing for comfort and stability on the road.">Amortiguadores, rótulas, alineación y balanceo para confort y estabilidad en ruta.</p>
 </div>
 <!-- Servicio 5-->
 <div class="glass-card p-6 md:p-7 hover-lift group">
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-snowflake text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Climatización</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Carga de gas, limpieza de conductos y reparación de compresores para confort térmico.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Climatización" data-en="Air Conditioning">Climatización</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Carga de gas, limpieza de conductos y reparación de compresores para confort térmico." data-en="Gas charging, duct cleaning and compressor repair for thermal comfort.">Carga de gas, limpieza de conductos y reparación de compresores para confort térmico.</p>
 </div>
 <!-- Servicio 6-->
 <div class="glass-card p-6 md:p-7 hover-lift group">
 <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-red/20 to-primary-red/20 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
 <i class="fa-solid fa-bolt text-2xl md:text-3xl text-primary-red"></i>
 </div>
-<h3 class="font-bold text-xl text-white mb-2.5">Electricidad Automotriz</h3>
-<p class="text-gray-400/90 text-sm leading-relaxed">Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación.</p>
+<h3 class="font-bold text-xl text-white mb-2.5" data-es="Electricidad Automotriz" data-en="Automotive Electricity">Electricidad Automotriz</h3>
+<p class="text-gray-400/90 text-sm leading-relaxed" data-es="Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación." data-en="Diagnosis of electrical failures, batteries, alternators and lighting systems.">Diagnóstico de fallas eléctricas, baterías, alternadores y sistemas de iluminación.</p>
 </div>
 </div>
 </div>
@@ -641,10 +699,10 @@ Tecnología avanzada y expertise técnico para mantener tu vehículo en condicio
 <div class="container mx-auto px-4">
 <div class="text-center mb-10 md:mb-14">
 <div class="inline-block bg-primary-red/15 border border-primary-red/30 text-primary-red px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-5">
-<i class="fa-solid fa-comments mr-1.5"></i> Experiencias Reales
+<i class="fa-solid fa-comments mr-1.5"></i> <span data-es="Experiencias Reales" data-en="Real Experiences">Experiencias Reales</span>
 </div>
-<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase glow-text tracking-tight">La Voz de Nuestros Clientes</h2>
-<p class="text-gray-400/90 max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed">
+<h2 class="font-display font-bold text-4xl md:text-5xl text-white uppercase glow-text tracking-tight" data-es="La Voz de Nuestros Clientes" data-en="The Voice of Our Clients">La Voz de Nuestros Clientes</h2>
+<p class="text-gray-400/90 max-w-2xl mx-auto mt-4 text-base md:text-lg leading-relaxed" data-es="Confianza construida sobre resultados verificables y atención profesional." data-en="Trust built on verifiable results and professional service.">
 Confianza construida sobre resultados verificables y atención profesional.
 </p>
 </div>
@@ -657,7 +715,7 @@ Confianza construida sobre resultados verificables y atención profesional.
 </div>
 <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
 </div>
-<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad."</p>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad." data-en="Accurate diagnosis in minutes. The technology they use is impressive and they explained everything clearly.">"Diagnóstico preciso en minutos. La tecnología que usan es impresionante y me explicaron todo con claridad."</p>
 <div class="flex items-center pt-3 border-t border-white/10">
 <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-red to-red-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">MP</div>
 <div>
@@ -674,7 +732,7 @@ Confianza construida sobre resultados verificables y atención profesional.
 </div>
 <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
 </div>
-<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado."</p>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado." data-en="Transparent and fast process. The online pre-diagnosis saved me time and money. Totally recommended.">"Proceso transparente y rápido. El pre-diagnóstico online me ahorró tiempo y dinero. Totalmente recomendado."</p>
 <div class="flex items-center pt-3 border-t border-white/10">
 <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-red to-red-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">AR</div>
 <div>
@@ -691,7 +749,7 @@ Confianza construida sobre resultados verificables y atención profesional.
 </div>
 <i class="fa-solid fa-quote-right text-3xl text-gray-700/70"></i>
 </div>
-<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm">"Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada."</p>
+<p class="text-gray-300/95 italic mb-5 leading-relaxed text-sm" data-es="Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada." data-en="Excellent for managing my company's fleet. Detailed reports and personalized service.">"Excelente para gestionar la flota de mi empresa. Reportes detallados y atención personalizada."</p>
 <div class="flex items-center pt-3 border-t border-white/10">
 <div class="w-11 h-11 rounded-full bg-gradient-to-br from-primary-red to-red-700 flex items-center justify-center text-white font-bold mr-3.5 flex-shrink-0">EC</div>
 <div>
@@ -701,8 +759,9 @@ Confianza construida sobre resultados verificables y atención profesional.
 </div>
 </div>
 <p class="text-center text-gray-500 mt-5 text-sm flex items-center justify-center gap-1.5">
-<i class="fa-solid fa-arrow-right text-primary-red"></i> Desliza para más opiniones
+<i class="fa-solid fa-arrow-right text-primary-red"></i> <span data-es="Desliza para más opiniones" data-en="Swipe for more opinions">Desliza para más opiniones</span>
 </p>
+</div>
 </div>
 </section>
 <!-- SECCIÓN: FORMULARIO DE DIAGNÓSTICO-->
@@ -713,10 +772,9 @@ Confianza construida sobre resultados verificables y atención profesional.
 <!-- Columna informativa-->
 <div class="lg:w-1/3 space-y-6">
 <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-2 glow-text tracking-tight">
-ACELERADOR DE<br>
-<span class="gradient-text">DIAGNÓSTICO</span>
+<span data-es="ACELERADOR DE<br>DIAGNÓSTICO" data-en="DIAGNOSIS<br>ACCELERATOR">ACELERADOR DE<br><span class="gradient-text">DIAGNÓSTICO</span></span>
 </h2>
-<p class="text-gray-400/90 mb-6 text-base leading-relaxed">
+<p class="text-gray-400/90 mb-6 text-base leading-relaxed" data-es="Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos." data-en="Complete the form and our technicians will prepare the preliminary analysis before your arrival. We optimize your time and resources.">
 Completa el formulario y nuestros técnicos prepararán el análisis previo antes de tu llegada. Optimizamos tu tiempo y recursos.
 </p>
 <div class="space-y-5 pt-2">
@@ -725,8 +783,8 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <i class="fa-solid fa-stopwatch text-xl"></i>
 </div>
 <div>
-<h4 class="font-bold text-white text-base mb-1">Ahorro de Tiempo</h4>
-<p class="text-gray-400/90 text-sm">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p>
+<h4 class="font-bold text-white text-base mb-1" data-es="Ahorro de Tiempo" data-en="Time Saving">Ahorro de Tiempo</h4>
+<p class="text-gray-400/90 text-sm" data-es="Evita esperas innecesarias. Tu caso ya estará en análisis al llegar." data-en="Avoid unnecessary waits. Your case will already be under analysis upon arrival.">Evita esperas innecesarias. Tu caso ya estará en análisis al llegar.</p>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -734,8 +792,8 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <i class="fa-solid fa-file-waveform text-xl"></i>
 </div>
 <div>
-<h4 class="font-bold text-white text-base mb-1">Análisis Previo</h4>
-<p class="text-gray-400/90 text-sm">Preparamos herramientas y repuestos específicos para tu caso.</p>
+<h4 class="font-bold text-white text-base mb-1" data-es="Análisis Previo" data-en="Preliminary Analysis">Análisis Previo</h4>
+<p class="text-gray-400/90 text-sm" data-es="Preparamos herramientas y repuestos específicos para tu caso." data-en="We prepare specific tools and spare parts for your case.">Preparamos herramientas y repuestos específicos para tu caso.</p>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -743,8 +801,8 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <i class="fa-solid fa-shield-halved text-xl"></i>
 </div>
 <div>
-<h4 class="font-bold text-white text-base mb-1">Transparencia Total</h4>
-<p class="text-gray-400/90 text-sm">Recibirás un informe detallado con opciones de reparación y costos.</p>
+<h4 class="font-bold text-white text-base mb-1" data-es="Transparencia Total" data-en="Total Transparency">Transparencia Total</h4>
+<p class="text-gray-400/90 text-sm" data-es="Recibirás un informe detallado con opciones de reparación y costos." data-en="You will receive a detailed report with repair options and costs.">Recibirás un informe detallado con opciones de reparación y costos.</p>
 </div>
 </div>
 </div>
@@ -754,8 +812,8 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <i class="fa-solid fa-check text-green-400"></i>
 </div>
 <div>
-<p class="text-sm font-semibold text-white">Datos 100% seguros</p>
-<p class="text-xs text-gray-500">Tu información está protegida</p>
+<p class="text-sm font-semibold text-white" data-es="Datos 100% seguros" data-en="100% secure data">Datos 100% seguros</p>
+<p class="text-xs text-gray-500" data-es="Tu información está protegida" data-en="Your information is protected">Tu información está protegida</p>
 </div>
 </div>
 </div>
@@ -766,38 +824,38 @@ Completa el formulario y nuestros técnicos prepararán el análisis previo ante
 <div class="border-b border-white/10 pb-5">
 <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
 <span class="bg-gradient-to-r from-primary-red to-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
-Datos del Vehículo
+<span data-es="Datos del Vehículo" data-en="Vehicle Data">Datos del Vehículo</span>
 </h3>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 <div>
 <select id="inputVehicleType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
-<option value="" disabled selected>Tipo de vehículo...</option>
-<option value="Auto">Auto</option>
-<option value="Moto">Moto</option>
-<option value="Cuatriciclo">Cuatriciclo</option>
+<option value="" disabled selected data-es="Tipo de vehículo..." data-en="Vehicle type...">Tipo de vehículo...</option>
+<option value="Auto" data-es="Auto" data-en="Car">Auto</option>
+<option value="Moto" data-es="Moto" data-en="Motorcycle">Moto</option>
+<option value="Cuatriciclo" data-es="Cuatriciclo" data-en="Quad">Cuatriciclo</option>
 </select>
-<label for="inputVehicleType" class="label-below">Tipo de Vehículo<span class="required">*</span></label>
+<label for="inputVehicleType" class="label-below"><span data-es="Tipo de Vehículo" data-en="Vehicle Type">Tipo de Vehículo</span><span class="required">*</span></label>
 <i class="fa-solid fa-chevron-down absolute right-4 top-[6.4rem] md:top-[4.65rem] -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
 </div>
 <div>
 <input type="text" id="inputVehicle" placeholder="Marca y Modelo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-<label for="inputVehicle" class="label-below">Marca y Modelo<span class="required">*</span></label>
+<label for="inputVehicle" class="label-below"><span data-es="Marca y Modelo" data-en="Make and Model">Marca y Modelo</span><span class="required">*</span></label>
 </div>
 <div>
 <input type="number" id="inputKm" placeholder="Kilometraje" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-<label for="inputKm" class="label-below">Kilometraje<span class="required">*</span></label>
+<label for="inputKm" class="label-below"><span data-es="Kilometraje" data-en="Mileage">Kilometraje</span><span class="required">*</span></label>
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
 <div>
 <select id="inputFuelType" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none" required>
-<option value="" disabled selected>Tipo de combustible...</option>
-<option value="Naftero">Naftero(Gasolina)</option>
-<option value="Diesel">Diesel</option>
-<option value="Híbrido">Híbrido</option>
-<option value="Eléctrico">Eléctrico</option>
+<option value="" disabled selected data-es="Tipo de combustible..." data-en="Fuel type...">Tipo de combustible...</option>
+<option value="Naftero" data-es="Naftero(Gasolina)" data-en="Gasoline">Naftero(Gasolina)</option>
+<option value="Diesel" data-es="Diesel" data-en="Diesel">Diesel</option>
+<option value="Híbrido" data-es="Híbrido" data-en="Hybrid">Híbrido</option>
+<option value="Eléctrico" data-es="Eléctrico" data-en="Electric">Eléctrico</option>
 </select>
-<label for="inputFuelType" class="label-below">Combustible<span class="required">*</span></label>
+<label for="inputFuelType" class="label-below"><span data-es="Combustible" data-en="Fuel">Combustible</span><span class="required">*</span></label>
 <i class="fa-solid fa-chevron-down absolute right-4 top-[10.9rem] md:top-[4.65rem] -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
 </div>
 </div>
@@ -806,41 +864,41 @@ Datos del Vehículo
 <div class="border-b border-white/10 pb-5">
 <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
 <span class="bg-gradient-to-r from-primary-red to-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
-Descripción de Fallas
+<span data-es="Descripción de Fallas" data-en="Failure Description">Descripción de Fallas</span>
 </h3>
 <div class="mb-4">
 <textarea id="inputSymptoms" rows="3" placeholder="Describe ruidos, olores, vibraciones, luces de alerta..." class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm resize-none" required></textarea>
-<label for="inputSymptoms" class="label-below">Síntomas<span class="required">*</span></label>
+<label for="inputSymptoms" class="label-below"><span data-es="Síntomas" data-en="Symptoms">Síntomas</span><span class="required">*</span></label>
 </div>
 <div>
 <select id="inputContext" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm appearance-none">
-<option value="" disabled selected>Contexto de la falla...</option>
+<option value="" disabled selected data-es="Contexto de la falla..." data-en="Failure context...">Contexto de la falla...</option>
 <optgroup label="🔋 ARRANQUE Y ENERGÍA" class="text-gray-300">
-<option value="no_arranca_gira">Gira pero no arranca</option>
-<option value="no_arranca_nada">No da contacto</option>
-<option value="arranca_lento">Arranque lento o difícil</option>
+<option value="no_arranca_gira" data-es="Gira pero no arranca" data-en="Turns but doesn't start">Gira pero no arranca</option>
+<option value="no_arranca_nada" data-es="No da contacto" data-en="No contact">No da contacto</option>
+<option value="arranca_lento" data-es="Arranque lento o difícil" data-en="Slow or difficult start">Arranque lento o difícil</option>
 </optgroup>
 <optgroup label="⚙ RENDIMIENTO" class="text-gray-300 mt-2">
-<option value="falla_ralenti">Inestabilidad en ralentí</option>
-<option value="pierde_potencia">Pérdida de potencia</option>
-<option value="consumo_excesivo">Consumo excesivo de combustible</option>
-<option value="humo_escape">Humo en escape(color)</option>
+<option value="falla_ralenti" data-es="Inestabilidad en ralentí" data-en="Idle instability">Inestabilidad en ralentí</option>
+<option value="pierde_potencia" data-es="Pérdida de potencia" data-en="Loss of power">Pérdida de potencia</option>
+<option value="consumo_excesivo" data-es="Consumo excesivo de combustible" data-en="Excessive fuel consumption">Consumo excesivo de combustible</option>
+<option value="humo_escape" data-es="Humo en escape(color)" data-en="Smoke in exhaust(color)">Humo en escape(color)</option>
 </optgroup>
 <optgroup label="🔊 RUIDOS Y VIBRACIONES" class="text-gray-300 mt-2">
-<option value="ruido_frenar">Ruido al frenar</option>
-<option value="ruido_direccion">Ruido al girar dirección</option>
-<option value="vibracion_alta">Vibración en alta velocidad</option>
-<option value="ruido_motor">Ruido anormal en motor</option>
+<option value="ruido_frenar" data-es="Ruido al frenar" data-en="Noise when braking">Ruido al frenar</option>
+<option value="ruido_direccion" data-es="Ruido al girar dirección" data-en="Noise when turning steering">Ruido al girar dirección</option>
+<option value="vibracion_alta" data-es="Vibración en alta velocidad" data-en="Vibration at high speed">Vibración en alta velocidad</option>
+<option value="ruido_motor" data-es="Ruido anormal en motor" data-en="Abnormal engine noise">Ruido anormal en motor</option>
 </optgroup>
 <optgroup label="🌡 TEMPERATURA Y FLUIDOS" class="text-gray-300 mt-2">
-<option value="levanta_temp">Se calienta el motor</option>
-<option value="perdida_fluido">Pérdida de fluido visible</option>
+<option value="levanta_temp" data-es="Se calienta el motor" data-en="Engine overheats">Se calienta el motor</option>
+<option value="perdida_fluido" data-es="Pérdida de fluido visible" data-en="Visible fluid loss">Pérdida de fluido visible</option>
 </optgroup>
-<option value="falla_frio">Solo falla en frío</option>
-<option value="falla_caliente">Solo falla en caliente</option>
-<option value="falla_intermitente">Falla intermitente</option>
+<option value="falla_frio" data-es="Solo falla en frío" data-en="Only fails when cold">Solo falla en frío</option>
+<option value="falla_caliente" data-es="Solo falla en caliente" data-en="Only fails when hot">Solo falla en caliente</option>
+<option value="falla_intermitente" data-es="Falla intermitente" data-en="Intermittent failure">Falla intermitente</option>
 </select>
-<label for="inputContext" class="label-below">Contexto</label>
+<label for="inputContext" class="label-below"><span data-es="Contexto" data-en="Context">Contexto</span></label>
 <i class="fa-solid fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs pointer-events-none"></i>
 </div>
 </div>
@@ -848,28 +906,28 @@ Descripción de Fallas
 <div>
 <h3 class="text-lg font-bold text-white mb-5 flex items-center gap-3">
 <span class="bg-gradient-to-r from-primary-red to-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
-Datos de Contacto
+<span data-es="Datos de Contacto" data-en="Contact Information">Datos de Contacto</span>
 </h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <input type="text" id="inputName" placeholder="Tu nombre completo" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm" required>
-<label for="inputName" class="label-below">Nombre<span class="required">*</span></label>
+<label for="inputName" class="label-below"><span data-es="Nombre" data-en="Name">Nombre</span><span class="required">*</span></label>
 </div>
 <div>
 <input type="tel" id="inputPhone" placeholder="WhatsApp para contacto" class="input-modern w-full bg-transparent p-4 rounded-xl outline-none text-sm">
-<label for="inputPhone" class="label-below">WhatsApp</label>
+<label for="inputPhone" class="label-below"><span data-es="WhatsApp" data-en="WhatsApp">WhatsApp</span></label>
 </div>
 </div>
 <p class="text-xs text-gray-500 mt-3 flex items-center gap-1.5">
-<i class="fa-solid fa-lock text-primary-red"></i> Tus datos se usarán únicamente para coordinar tu turno
+<i class="fa-solid fa-lock text-primary-red"></i> <span data-es="Tus datos se usarán únicamente para coordinar tu turno" data-en="Your data will only be used to coordinate your appointment">Tus datos se usarán únicamente para coordinar tu turno</span>
 </p>
 </div>
 <!-- Botón de envío-->
 <button type="submit" class="btn-primary w-full font-bold uppercase text-base py-4.5 rounded-2xl hover:shadow-neon transition flex items-center justify-center gap-3 mt-2">
-<i class="fa-brands fa-whatsapp text-2xl"></i> Enviar Solicitud a DJM Mecánica Eco
+<i class="fa-brands fa-whatsapp text-2xl"></i> <span data-es="Enviar Solicitud a MECANICA DUBOIS" data-en="Send Request to MECANICA DUBOIS">Enviar Solicitud a MECANICA DUBOIS</span>
 </button>
 <p class="text-center text-xs text-gray-500 pt-2">
-Al enviar, aceptas nuestros <a href="#" class="text-primary-red hover:underline">términos de servicio</a>
+<span data-es="Al enviar, aceptas nuestros" data-en="By sending, you accept our">Al enviar, aceptas nuestros</span> <a href="#" class="text-primary-red hover:underline" data-es="términos de servicio" data-en="terms of service">términos de servicio</a>
 </p>
 </form>
 </div>
@@ -891,31 +949,31 @@ Al enviar, aceptas nuestros <a href="#" class="text-primary-red hover:underline"
 <!-- Card de ubicación-->
 <div class="glass-card rounded-3xl p-6 md:p-10 max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
 <div class="text-left max-w-md">
-<h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2">¿Dónde estamos?</h3>
-<p class="text-gray-400/90 mb-4 text-base">Visítanos para validación final y reparaciones especializadas.</p>
+<h3 class="font-display font-bold text-2xl md:text-3xl text-white mb-2" data-es="¿Dónde estamos?" data-en="Where are we?">¿Dónde estamos?</h3>
+<p class="text-gray-400/90 mb-4 text-base" data-es="Visítanos para validación final y reparaciones especializadas." data-en="Visit us for final validation and specialized repairs.">Visítanos para validación final y reparaciones especializadas.</p>
 <div class="flex items-start gap-3 text-gray-300/90 text-sm">
 <i class="fa-regular fa-clock text-primary-red text-xl mt-0.5 flex-shrink-0"></i>
 <div>
-<p class="font-medium">Horarios de atención:</p>
-<p>Lunes a Viernes: 09:30 - 18:30</p>
-<p>Sábado y Domingo: Cerrado</p>
+<p class="font-medium" data-es="Horarios de atención:" data-en="Business hours:">Horarios de atención:</p>
+<p data-es="Lunes a Viernes: 09:30 - 18:30" data-en="Monday to Friday: 09:30 - 18:30">Lunes a Viernes: 09:30 - 18:30</p>
+<p data-es="Sábado y Domingo: Cerrado" data-en="Saturday and Sunday: Closed">Sábado y Domingo: Cerrado</p>
 </div>
 </div>
 </div>
 <div class="flex flex-col sm:flex-row gap-3">
-<a href="https://maps.app.goo.gl/4QHTd33Bm94pRUNJ8" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
-<i class="fa-solid fa-map-location-dot text-lg"></i> Ver en Google Maps
+<a href="https://maps.app.goo.gl/KLGmKhbTtMhampvt6" target="_blank" rel="noopener noreferrer" class="btn-primary px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+<i class="fa-solid fa-map-location-dot text-lg"></i> <span data-es="Ver en Google Maps" data-en="View on Google Maps">Ver en Google Maps</span>
 </a>
 <!-- BOTÓN DE RESEÑAS-->
-<a href="https://maps.app.goo.gl/4QHTd33Bm94pRUNJ8" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
-<i class="fa-solid fa-star text-lg"></i> Deja tu Reseña
+<a href="https://maps.app.goo.gl/KLGmKhbTtMhampvt6" target="_blank" rel="noopener noreferrer" class="btn-review px-6 py-3.5 md:px-8 md:py-4 rounded-2xl font-bold hover:shadow-neon transition flex items-center gap-3 text-sm md:text-base whitespace-nowrap shadow-soft">
+<i class="fa-solid fa-star text-lg"></i> <span data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 </div>
 </div>
 <!-- Badge de garantía-->
 <div class="mt-10 inline-flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 rounded-full">
 <i class="fa-solid fa-certificate text-primary-red text-lg"></i>
-<span class="text-sm font-medium text-gray-300">Garantía en todos nuestros servicios</span>
+<span class="text-sm font-medium text-gray-300" data-es="Garantía en todos nuestros servicios" data-en="Warranty on all our services">Garantía en todos nuestros servicios</span>
 </div>
 </div>
 </section>
@@ -924,36 +982,36 @@ Al enviar, aceptas nuestros <a href="#" class="text-primary-red hover:underline"
 <div class="container mx-auto px-4">
 <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 <div class="text-center md:text-left">
-<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">DJM Mecánica Eco</p>
-<p class="text-sm">Diagnóstico Automotriz Profesional</p>
+<p class="mb-2 text-white font-display font-bold text-xl md:text-2xl glow-text tracking-tight">MECANICA DUBOIS</p>
+<p class="text-sm" data-es="Diagnóstico Automotriz Profesional" data-en="Professional Automotive Diagnosis">Diagnóstico Automotriz Profesional</p>
 </div>
 <!-- Footer minimalista con redes sociales-->
 <div class="flex items-center gap-4">
 <!-- Botón de reseñas-->
-<a href="https://maps.app.goo.gl/4QHTd33Bm94pRUNJ8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-red hover:text-yellow-400 transition text-sm font-semibold group">
+<a href="https://maps.app.goo.gl/KLGmKhbTtMhampvt6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-red hover:text-yellow-400 transition text-sm font-semibold group">
 <i class="fa-solid fa-star group-hover:scale-110 transition-transform"></i>
-<span>Deja tu Reseña</span>
+<span data-es="Deja tu Reseña" data-en="Leave Review">Deja tu Reseña</span>
 </a>
 <!-- Botón de Instagram-->
-<a href="https://www.instagram.com/djm_mecanica_ero/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-red hover:text-pink-400 transition text-sm font-semibold group">
+<a href="https://www.instagram.com/mecanicadubois/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-primary-red hover:text-pink-400 transition text-sm font-semibold group">
 <i class="fa-brands fa-instagram group-hover:scale-110 transition-transform"></i>
 <span>Instagram</span>
 </a>
 </div>
 </div>
 <div class="border-t border-white/10 mt-8 pt-6 text-center text-sm">
-<p>&copy; <span id="current-year">2025</span> DJM Mecánica Eco. Todos los derechos reservados.</p>
-<p class="text-gray-600 mt-1 text-xs">Sitio web desarrollado con tecnología moderna</p>
+<p>&copy; <span id="current-year">2025</span> MECANICA DUBOIS. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+<p class="text-gray-600 mt-1 text-xs" data-es="Sitio web desarrollado con tecnología moderna" data-en="Website developed with modern technology">Sitio web desarrollado con tecnología moderna</p>
 </div>
 </div>
 </footer>
 <!-- STICKY MOBILE CTA-->
 <div class="fixed bottom-0 left-0 w-full bg-gray-900/95 backdrop-blur-sm border-t border-white/10 p-4 md:hidden z-50 flex gap-3">
 <a href="#asesoramiento" class="flex-1 bg-white/5 text-white font-semibold py-3.5 rounded-xl text-center border border-white/10 hover:border-primary-red/40 transition text-sm flex items-center justify-center gap-2">
-<i class="fa-solid fa-book-open text-primary-red"></i>Guías
+<i class="fa-solid fa-book-open text-primary-red"></i><span data-es="Guías" data-en="Guides">Guías</span>
 </a>
 <a href="#diagnostico" class="flex-[2] btn-primary font-bold py-3.5 rounded-xl text-center uppercase shadow-neon text-sm flex items-center justify-center gap-2">
-<i class="fa-solid fa-microchip"></i> Diagnóstico
+<i class="fa-solid fa-microchip"></i> <span data-es="Diagnóstico" data-en="Diagnosis">Diagnóstico</span>
 </a>
 </div>
 <!-- JAVASCRIPT FUNCIONAL-->
@@ -1095,7 +1153,7 @@ const context= contextSelect.options[contextSelect.selectedIndex]?.text||'No esp
 const name= document.getElementById('inputName').value||'Cliente';
 const phone= document.getElementById('inputPhone').value||'No proporcionado';
 // Mensaje para WhatsApp con el nuevo nombre y número
-const message=`🚗 *¡Hola DJM Mecánica Eco!* 👋
+const message=`🚗 *¡Hola MECANICA DUBOIS!* 👋
 📛 *Cliente:* ${name}
 📱 *Contacto:* ${phone}
 🚘 *Tipo de Vehículo:* ${vehicleType}
@@ -1107,7 +1165,7 @@ ${symptoms}
 🔍 *Contexto:* ${context}
 📅 *Solicito turno para diagnóstico profesional.* 💨`;
 // URL de WhatsApp con el nuevo número formateado para Argentina
-const whatsappUrl=`https://api.whatsapp.com/send?phone=+542901401449&text=${encodeURIComponent(message)}`;
+const whatsappUrl=`https://api.whatsapp.com/send?phone=+542964699258&text=${encodeURIComponent(message)}`;
 setTimeout(()=>{
 window.open(whatsappUrl,'_blank','noopener,noreferrer');
 btn.innerHTML='<i class="fa-solid fa-circle-check"></i> ¡Solicitud Enviada! ✅';
@@ -1146,6 +1204,81 @@ navbar.classList.add('glass');
 }
 },{passive: true});
 }
+// Language Switcher Functions
+function toggleLang(){
+document.getElementById('lang-dropdown').classList.toggle('active');
+}
+function changeLanguage(lang){
+document.getElementById('current-lang').textContent= lang.toUpperCase();
+// Close dropdown
+document.getElementById('lang-dropdown').classList.remove('active');
+// Change all elements with data-es and data-en attributes
+document.querySelectorAll('[data-es]').forEach(el=>{
+if(lang==='en'){
+if(el.tagName==='SELECT'|| el.tagName==='OPTION'){
+// Handle select elements
+if(el.tagName==='SELECT' && el.querySelector('option[selected]')){
+// Keep selected option
+} else{
+el.querySelectorAll('option').forEach(opt=>{
+if(opt.dataset.en){
+opt.textContent= opt.dataset.en;
+}
+});
+}
+} else if(el.childNodes.length>0){
+// For elements with child nodes, find text nodes
+let textNode= null;
+for(let node of el.childNodes){
+if(node.nodeType=== Node.TEXT_NODE && node.textContent.trim()){
+textNode= node;
+break;
+}
+}
+if(textNode && el.dataset.en){
+textNode.textContent= el.dataset.en;
+} else if(el.dataset.en){
+el.textContent= el.dataset.en;
+}
+}
+} else{
+if(el.tagName==='SELECT'|| el.tagName==='OPTION'){
+// Handle select elements
+if(el.tagName==='SELECT' && el.querySelector('option[selected]')){
+// Keep selected option
+} else{
+el.querySelectorAll('option').forEach(opt=>{
+if(opt.dataset.es){
+opt.textContent= opt.dataset.es;
+}
+});
+}
+} else if(el.childNodes.length>0){
+// For elements with child nodes, find text nodes
+let textNode= null;
+for(let node of el.childNodes){
+if(node.nodeType=== Node.TEXT_NODE && node.textContent.trim()){
+textNode= node;
+break;
+}
+}
+if(textNode && el.dataset.es){
+textNode.textContent= el.dataset.es;
+} else if(el.dataset.es){
+el.textContent= el.dataset.es;
+}
+}
+}
+});
+// Update HTML lang attribute
+document.documentElement.lang= lang;
+}
+// Close dropdown when clicking outside
+document.addEventListener('click',(e)=>{
+if(!e.target.closest('.lang-switcher')){
+document.getElementById('lang-dropdown')?.classList.remove('active');
+}
+});
 // Inicialización
 checkStatus();
 setInterval(checkStatus, 60000);
